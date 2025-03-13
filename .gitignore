@@ -1,0 +1,5 @@
+.env
+.venv
+.ipynb
+try.py
+__pycache__

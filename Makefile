@@ -1,11 +1,2 @@
-install:
-	pip install -r requirments.txt
-
-format:
-	black *.py
-
-lint:
-	pylint *.py
-
 run:
-	
+	uvicorn main:app --host 0.0.0.0 --port 8000
