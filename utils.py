@@ -111,8 +111,13 @@ def update_jobs(schema: JobUpdateRequestSchema, db):
 
     jobs = get_jobs(schema)
 
+    added_jobs_count = 0
+    existing_urls = {job.url for job in db.query(Job).all()}
+
     for job in jobs:
-        db.add(job)
+        if job.url not in existing_urls:
+            db.add(job)
+            added_jobs_count+=1
 
     db.commit()
-    return {"message": "{} jobs updated".format(len(jobs))}
+    return {"message": "{} jobs updated".format(added_jobs_count)}
